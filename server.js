@@ -3,6 +3,8 @@ const express = require("express");
 const connectDB = require("./db/connect");
 const Product = require("./db/model"); // Import the Product model
 const cors = require("cors");
+const PORT = process.env.PORT || 3001;
+const path = require("path");
 
 const app = express();
 
@@ -64,7 +66,12 @@ app.delete("/deleteProduct/:id", async (req, res) => {
 
 connectDB(); // Connect to the database
 
-const PORT = process.env.PORT || 3001;
+// production script
+app.use(express.static("./frontend/build"));
+app.get("*", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "frontend", "build", "index.html"));
+});
+
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
