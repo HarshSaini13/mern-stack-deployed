@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import "./App.css";
+import baseUrl from "../baseUrl";
 
 function App() {
   const [items, setItems] = useState([]);
@@ -13,7 +14,7 @@ function App() {
 
   const fetchProducts = async () => {
     try {
-      const response = await fetch("http://localhost:3001/allProducts");
+      const response = await fetch(`${baseUrl}/allProducts`);
       const data = await response.json();
       console.log(data);
       setItems(data); // Set the fetched products to the state
@@ -24,7 +25,7 @@ function App() {
 
   const deleteButtonClicked = async (productId) => {
     try {
-      await fetch(`http://localhost:3001/deleteProduct/${productId}`, {
+      await fetch(`${baseUrl}/deleteProduct/${productId}`, {
         method: "DELETE",
       });
 
@@ -47,7 +48,7 @@ function App() {
 
   const addProduct = (productName) => {
     // Send a POST request to add the product to the server
-    fetch("http://localhost:3001/addProduct", {
+    fetch(`${baseUrl}/addProduct`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
