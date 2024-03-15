@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import "./App.css";
-import baseUrl from "../baseUrl";
+import baseUrl from "./baseUrl";
 
 function App() {
   const [items, setItems] = useState([]);
