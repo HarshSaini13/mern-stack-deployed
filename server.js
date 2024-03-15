@@ -13,16 +13,6 @@ app.use(cors());
 
 app.use(express.json()); // Middleware to parse JSON requests
 
-// production script
-app.use(express.static("./frontend/build"));
-app.get("*", (req, res) => {
-  res.sendFile(path.resolve(__dirname, "frontend", "build", "index.html"));
-});
-
-app.get("/", (req, res) => {
-  res.send("Hello, World!");
-});
-
 app.post("/addProduct", async (req, res) => {
   try {
     const { name } = req.body; // Extract product details from request body
@@ -71,6 +61,12 @@ app.delete("/deleteProduct/:id", async (req, res) => {
 });
 
 connectDB(); // Connect to the database
+
+// production script
+app.use(express.static("./frontend/build"));
+app.get("*", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "frontend", "build", "index.html"));
+});
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
