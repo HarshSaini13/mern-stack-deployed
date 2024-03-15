@@ -15,11 +15,12 @@ app.use(express.json()); // Middleware to parse JSON requests
 
 app.post("/addProduct", async (req, res) => {
   try {
-    const { name } = req.body; // Extract product details from request body
+    const { name, price } = req.body; // Extract product details from request body
 
     // Create a new product instance using the Product model
     const newProduct = new Product({
       name,
+      price,
     });
 
     // Save the new product to the database
