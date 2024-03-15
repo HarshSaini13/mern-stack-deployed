@@ -3,7 +3,7 @@ const express = require("express");
 const connectDB = require("./db/connect");
 const Product = require("./db/model"); // Import the Product model
 const cors = require("cors");
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 5000;
 const path = require("path");
 
 const app = express();
